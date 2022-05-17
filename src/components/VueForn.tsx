@@ -1,32 +1,23 @@
-import { FC, useEffect, useState } from 'react'
+import { FC, useState } from 'react'
 
 export interface Ibooks {
   id: number
   bookTitle: string
   bookAuthor: string
-  bookGanre: string
+  bookGenre: string
 }
 
-const VueForn: FC<Ibooks> = () => {
-  const [allBuks, setallBuks] = useState(null) as any[]
+const VueForn: FC<Ibooks> = ({ data }) => {
+  console.log(data)
 
-  const getData = async () => {
-    const res = await fetch('/api')
-    const data = await res.json()
-    setallBuks(data)
-  }
-
-  useEffect(() => {
-    getData()
-  }, [])
+  const [allBuks, setallBuks] = useState(data)
 
   return (
     <div className='border-2'>
       {allBuks?.map((el: Ibooks) => (
-        <div key={el.id}>
+        <div className='flex justify-between' key={el.id}>
           <div>{el.bookTitle}</div>
-          <div>{el.bookAuthor}</div>
-          <div>{el.bookGanre}</div>
+          <div className='hover:text-red-400 cursor-pointer'>del</div>
         </div>
       ))}
     </div>

@@ -4,24 +4,22 @@ const AddForm = () => {
   const [title, setTitle] = useState('')
   const [author, setauthor] = useState('')
   const [genre, setgenre] = useState('')
-  
 
   const handleSubmit = async (e: MouseEvent) => {
     e.preventDefault()
     const body = { title, author, genre }
     try {
-      const response = await fetch('/api', {
+      const response = await fetch('http://localhost:3000/api/create', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
       })
+      setTitle('')
+      setauthor('')
+      setgenre('')
       if (response.status !== 200) {
         console.log('something went wrong')
-        //set an error banner here
       } else {
-        setTitle('')
-        setauthor('')
-        setgenre('')
       }
     } catch (error) {
       console.log('there was an error submitting', error)

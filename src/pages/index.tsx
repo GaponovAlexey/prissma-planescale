@@ -3,7 +3,7 @@ import Head from 'next/head'
 import AddForm from '../components/AddForm'
 import VueForn from '../components/VueForn'
 
-const Home: NextPage = () => {
+const Home: NextPage = ({data}) => {
   return (
     <div>
       <Head>
@@ -18,7 +18,7 @@ const Home: NextPage = () => {
         <div className='border ' />
         <div className='text-blue-400 min-w-[300px] '>
           <h1>Vue</h1>
-          <VueForn />
+          <VueForn data={data} />
         </div>
         <div className='border ' />
         <div className='text-green-400'>
@@ -32,3 +32,13 @@ const Home: NextPage = () => {
 }
 
 export default Home
+
+export const getStaticProps = async () => {
+  const response = await fetch('http://localhost:3000/api')
+  const data = await response.json()
+  return {
+    props: {
+      data,
+    },
+  }
+}
