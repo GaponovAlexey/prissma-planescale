@@ -1,8 +1,6 @@
 import { FC, useState } from 'react'
 import { Ibooks } from '../pages'
 
-
-
 const VueForn: FC<Ibooks> = ({ data }) => {
   const [allBuks, setallBuks] = useState(data) as any
 
@@ -12,7 +10,6 @@ const VueForn: FC<Ibooks> = ({ data }) => {
     })
   }
 
-  
   const updatePost = async (
     id: number,
     bookTitle: string,
@@ -32,13 +29,32 @@ const VueForn: FC<Ibooks> = ({ data }) => {
     })
   }
 
+  const editHandler = async (id: number) => {
+    const title = prompt('Введите новые данные')
+
+    await fetch(`http://localhost:3000/api/update/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        title,
+      }),
+    })
+  }
+
   return (
     <div className='border-2'>
       {allBuks?.map((el: Ibooks | any) => (
         <div className='flex justify-between' key={el.id}>
           <div>{el.bookTitle}</div>
           <div className='flex '>
-            <div className='hover:text-orange-500' >cor</div>
+            <div
+              onClick={() => editHandler(el.id)}
+              className='hover:text-orange-500'
+            >
+              cor
+            </div>
             <div
               onClick={() => deleteHandler(el.id)}
               className='hover:text-red-400 cursor-pointer ml-2'
