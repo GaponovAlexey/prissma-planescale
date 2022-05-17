@@ -22,7 +22,7 @@ const Home: NextPage<Ibooks> = ({ data }) => {
       </Head>
       <div className='flex justify-between max-w-[700px]'>
         <div className='text-red-400'>
-          <h1>Hello Next.js ut us crud prisma </h1>
+          <h1>Hello Next.js <br/> prisma crud </h1>
         </div>
         <div className='border ' />
         <div className='text-blue-400 min-w-[300px] '>
