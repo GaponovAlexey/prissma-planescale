@@ -1,4 +1,4 @@
-.env
+
 # dependencies
 /node_modules
 /.pnp
@@ -25,12 +25,15 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # local env files
-git rm .env --cached
-.env
-.env*.local
+git rm env
+git rm env.local --cached
+git rm env.staging --cached
+git commit -m "Stopped tracking env.local, and env.staging"
 
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
+git rm .env --cached
+git commit -m "Stopped tracking .env File"
