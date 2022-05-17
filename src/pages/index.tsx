@@ -3,7 +3,16 @@ import Head from 'next/head'
 import AddForm from '../components/AddForm'
 import VueForn from '../components/VueForn'
 
-const Home: NextPage = ({data}) => {
+export interface Ibooks {
+  data: {
+    id: number
+    bookTitle: string
+    bookAuthor: string
+    bookGenre: string
+  }
+}
+
+const Home: NextPage<Ibooks> = ({ data }) => {
   return (
     <div>
       <Head>
@@ -13,7 +22,7 @@ const Home: NextPage = ({data}) => {
       </Head>
       <div className='flex justify-between max-w-[700px]'>
         <div className='text-red-400'>
-          <h1>Hello Next.js</h1>
+          <h1>Hello Next.js ut us crud prisma </h1>
         </div>
         <div className='border ' />
         <div className='text-blue-400 min-w-[300px] '>
