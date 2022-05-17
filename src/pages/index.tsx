@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import AddForm from '../components/AddForm'
+import VueForn from '../components/VueForn'
 
 const Home: NextPage = () => {
   return (
@@ -15,7 +16,10 @@ const Home: NextPage = () => {
           <h1>Hello Next.js</h1>
         </div>
         <div className='border ' />
-        <div className='text-blue-400'>are</div>
+        <div className='text-blue-400 min-w-[300px] '>
+          <h1>Vue</h1>
+          <VueForn />
+        </div>
         <div className='border ' />
         <div className='text-green-400'>
           <h1>here</h1>

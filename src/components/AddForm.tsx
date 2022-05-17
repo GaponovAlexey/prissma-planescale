@@ -1,23 +1,41 @@
-import { MouseEvent, useState } from 'react'
+import { MouseEvent, useEffect, useState } from 'react'
 
 const AddForm = () => {
-  const [valueName, setvalueName] = useState('')
-  const [book, setbook] = useState('')
+  const [title, setTitle] = useState('')
+  const [author, setauthor] = useState('')
   const [genre, setgenre] = useState('')
+  
+
+  const handleSubmit = async (e: MouseEvent) => {
+    e.preventDefault()
+    const body = { title, author, genre }
+    try {
+      const response = await fetch('/api', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      })
+      if (response.status !== 200) {
+        console.log('something went wrong')
+        //set an error banner here
+      } else {
+        setTitle('')
+        setauthor('')
+        setgenre('')
+      }
+    } catch (error) {
+      console.log('there was an error submitting', error)
+    }
+  }
 
   const handleChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setvalueName(e.target.value)
+    setTitle(e.target.value)
   }
   const handleChangeBook = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setbook(e.target.value)
+    setauthor(e.target.value)
   }
   const handleChangeGenre = (e: React.ChangeEvent<HTMLInputElement>) => {
     setgenre(e.target.value)
-  }
-
-  const handleSubmit = (e: MouseEvent) => {
-    e.preventDefault()
-    console.log(valueName)
   }
 
   return (
@@ -25,13 +43,13 @@ const AddForm = () => {
       <input
         type='text'
         placeholder='book title'
-        value={valueName}
+        value={title}
         onChange={handleChangeTitle}
       />
       <input
         type='text'
         placeholder='book'
-        value={book}
+        value={author}
         onChange={handleChangeBook}
       />
       <input
