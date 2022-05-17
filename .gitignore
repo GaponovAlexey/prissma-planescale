@@ -37,3 +37,7 @@ git commit -m "Stopped tracking env.local, and env.staging"
 *.tsbuildinfo
 git rm .env --cached
 git commit -m "Stopped tracking .env File"
+rm -f .env
+git add .
+git commit -m "remove .env file from git"
+git push
